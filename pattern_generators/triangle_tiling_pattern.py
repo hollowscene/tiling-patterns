@@ -11,7 +11,16 @@ Simple Triangle Tiling Pattern Generator.
 
 import cairo
 
-from bitlist_generator import generate_random_bitlist
+# Module imports
+import os
+import sys
+import inspect
+
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from src.bitlist_generator import generate_random_bitlist
 
 
 # %% Functions
@@ -105,4 +114,5 @@ if __name__ == "__main__":
     # because the vector shapes need to be rasterised when converted to .png
 
     # Writing this up to output as an .svg instead might fix this
-    surface.write_to_png("10x8-triangle-tiling-pattern.png")
+    path = "test_output/10x8-triangle-tiling-pattern.png"
+    surface.write_to_png(path)

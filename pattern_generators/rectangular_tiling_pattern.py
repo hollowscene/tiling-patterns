@@ -12,7 +12,16 @@ Simple Rectangle Tiling Pattern Generator.
 import cairo
 import random
 
-from bitlist_generator import generate_random_bitlist
+# Module imports
+import os
+import sys
+import inspect
+
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from src.bitlist_generator import generate_random_bitlist
 
 
 # %% Functions
@@ -98,8 +107,10 @@ if __name__ == "__main__":
     surface = generate_rectangle_tiling(tile_dimensions, tiling_dimensions,
                                         colour_palette, bitlist)
 
-    surface.write_to_png("10x8-rectangle-tiling-pattern.png")
+    path1 = "test_output/10x8-rectangle-tiling-pattern.png"
+    surface.write_to_png(path1)
 
     surface = generate_rectangle_tiling(tile_dimensions, tiling_dimensions)
 
-    surface.write_to_png("10x8-rectangle-tiling-pattern-random.png")
+    path2 = "test_output/10x8-rectangle-tiling-pattern-random.png"
+    surface.write_to_png(path2)
